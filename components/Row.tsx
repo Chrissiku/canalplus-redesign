@@ -28,7 +28,7 @@ const Row = ({ title, movies }: Props) => {
   };
 
   return (
-    <div className="h-40 space-y-0.5 md:space-y-2 ">
+    <div className="h-40 space-y-0.5 md:space-y-2">
       <h2 className="w-56 cursor-pointer text-sm font-semibold text-[#e5e5e5] transition duration-200 hover:text-white">
         {title}
       </h2>
@@ -41,7 +41,7 @@ const Row = ({ title, movies }: Props) => {
         />
         <div
           ref={rowReference}
-          className="flex items-center space-x-0.5 scrollbar-hide overflow-x-scroll md:space-x-2.5 md:p-2"
+          className="flex items-center space-x-0.5 overflow-x-scroll scrollbar-hide md:space-x-2.5 md:p-2"
         >
           {movies.map((movie) => (
             <Thumbnail key={movie.id} movie={movie} />
