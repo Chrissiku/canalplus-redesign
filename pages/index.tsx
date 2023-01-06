@@ -2,11 +2,53 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Banner from "../components/Banner";
 import Header from "../components/Header";
+import { Movie } from "../typings.definition";
 import requests from "../utils/requests";
+
+interface Props {
+  canalPlusOriginals: Movie[];
+  trendingNow: Movie[];
+  topRated: Movie[];
+  actionMovies: Movie[];
+  comedyMovies: Movie[];
+  horrorMovies: Movie[];
+  romanceMovies: Movie[];
+  documentaries: Movie[];
+}
+
+const Home = ({
+  canalPlusOriginals,
+  actionMovies,
+  comedyMovies,
+  documentaries,
+  horrorMovies,
+  romanceMovies,
+  topRated,
+  trendingNow,
+}: Props) => {
+  return (
+    <div className="relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh]">
+      <Head>
+        <title>Home - Canal+ </title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Header />
+      <main className="relative pl-4 pb-24 lg:space-y-24 lg:pl-16">
+        <Banner canalPlusOriginals={canalPlusOriginals} />
+        <section>
+          {/* Row */}
+          {/* Row */}
+          {/* Row */}
+        </section>
+      </main>
+      {/* Modal */}
+    </div>
+  );
+};
 
 export const getServerSideProps = async () => {
   const [
-    netflixOriginals,
+    canalPlusOriginals,
     trendingNow,
     topRated,
     actionMovies,
@@ -15,7 +57,7 @@ export const getServerSideProps = async () => {
     romanceMovies,
     documentaries,
   ] = await Promise.all([
-    fetch(requests.fetchNetflixOriginals).then((res) => res.json()),
+    fetch(requests.fetchCanalPlusOriginals).then((res) => res.json()),
     fetch(requests.fetchTrending).then((res) => res.json()),
     fetch(requests.fetchTopRated).then((res) => res.json()),
     fetch(requests.fetchActionMovies).then((res) => res.json()),
@@ -27,7 +69,7 @@ export const getServerSideProps = async () => {
 
   return {
     props: {
-      netflixOriginals: netflixOriginals.results,
+      canalPlusOriginals: canalPlusOriginals.results,
       trendingNow: trendingNow.results,
       topRated: topRated.results,
       actionMovies: actionMovies.results,
@@ -37,27 +79,6 @@ export const getServerSideProps = async () => {
       documentaries: documentaries.results,
     },
   };
-};
-
-const Home: NextPage = () => {
-  return (
-    <div className="relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh]">
-      <Head>
-        <title>Home - Canal+ </title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Header />
-      <main>
-        <Banner />
-        <section>
-          {/* Row */}
-          {/* Row */}
-          {/* Row */}
-        </section>
-      </main>
-      {/* Modal */}
-    </div>
-  );
 };
 
 export default Home;
