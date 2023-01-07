@@ -6,7 +6,6 @@ import { getAuth } from "firebase/auth";
 const firebaseConfig = {
   apiKey: "AIzaSyD2Zpxl3aOmJoBxe-CA1HNqcIYxw7c3dc8",
   authDomain: "canalplus-redesign.firebaseapp.com",
-  // databaseURL: 'https://next-firebase-stripe-39bf8-default-rtdb.firebaseio.com',
   projectId: "canalplus-redesign",
   storageBucket: "canalplus-redesign.appspot.com",
   messagingSenderId: "696627738619",
